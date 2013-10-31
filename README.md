@@ -10,3 +10,5 @@ so I added a simple job structure parser class, that just splits on a line break
 Then I could modify the sequencer method to handle simple jobs lists with no dependencies.
 
 Next I added some simple logic to handle the case of jobs only having one level deep dependencies.
+
+I realized the jobs parser wasn't actually parsing into the format I wanted, so I amended the test to reflect this and changed the parser and sequencer code to work with this new requirement.
