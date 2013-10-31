@@ -1,6 +1,4 @@
-require 'test/unit'
-require 'shoulda'
-require_relative '../lib/sequencer'
+require 'test_helper'
 
 class SequencerTest < Test::Unit::TestCase
   context 'A new sequencer' do
