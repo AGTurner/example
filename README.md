@@ -14,3 +14,7 @@ Next I added some simple logic to handle the case of jobs only having one level 
 I realized the jobs parser wasn't actually parsing into the format I wanted, so I amended the test to reflect this and changed the parser and sequencer code to work with this new requirement.
 
 Decided it was better for the JobsParser class to not use class methods, and parse the jobs with an instantiated object. Also make the Sequencer objects instantiate themselves with the relevent instance variables.
+
+I realised my tests were a bit too rigid when checking orders, so I redid this while adding the test for jobs with nested dependencies
+
+I decided the nested dependencies were best resolved with a recursive method, which would be called against a job until the job itself was sorted.
