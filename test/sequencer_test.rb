@@ -90,5 +90,20 @@ class SequencerTest < Test::Unit::TestCase
       end
 
     end
+
+    context 'that is passed the job structure
+              a =>
+              b =>
+              c => c' do
+
+      setup do
+        @sequencer = Sequencer.new("a =>\nb =>\nc => c")
+      end
+
+      should 'raise an error that a job can\'t depend on itself' do
+        exception = assert_raise(SelfDependentException) { @sequencer.sequence }
+        assert_equal("Jobs can't depend on themselves", exception.message)
+      end
+    end
   end
 end

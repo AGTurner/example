@@ -1,0 +1,2 @@
+class SelfDependentException < Exception
+end

@@ -1,4 +1,5 @@
 require_relative 'jobs_parser'
+require_relative 'exceptions'
 
 class Sequencer
 
@@ -17,10 +18,18 @@ class Sequencer
     @sorted_jobs
   end
 
+  def get_dependency(job)
+    if @jobs[job] == job
+      raise SelfDependentException, 'Jobs can\'t depend on themselves'
+    else
+      @jobs[job]
+    end
+  end
+
   def resolve_dependencies(job)
     if sorted(job)
       return
-    elsif dep = @jobs[job]
+    elsif dep = get_dependency(job)
       if sorted(dep)
         @sorted_jobs << job
       else
