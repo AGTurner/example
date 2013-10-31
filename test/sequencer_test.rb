@@ -45,5 +45,20 @@ class SequencerTest < Test::Unit::TestCase
       end
 
     end
+
+    context 'that is passed the job structure
+              a =>
+              b => c
+              c =>' do
+      
+      setup do
+        @jobs = "a =>\nb => c\nc =>"
+      end
+
+      should 'return the sequence: abc' do
+        assert_equal ['a','c','b'], @sequencer.sequence(@jobs)
+      end
+
+    end
   end
 end
