@@ -4,6 +4,8 @@
 
 I'm using my normal test workflow, which is Test::Unit with shoulda, automated with Guard so I can easily get continuous feedback.
 
+## Notes
+
 After handling the trivial case of an empty string, I decided that I wanted to be manipulating an array of job/dependency hashes,
 so I added a simple job structure parser class, that just splits on a line break and the '=>' delimeter and returning the hash.
 
@@ -19,6 +21,6 @@ I realised my tests were a bit too rigid when checking orders, so I redid this w
 
 I decided the nested dependencies were best resolved with a recursive method, which would be called against a job until the job itself was sorted.
 
-Added a simple check when getting a job's dependent that it wasn't itself
+Added a simple check when getting a job's dependent that it wasn't itself.
 
-Kept track of which jobs we have already tried to resolve dependencies for during recursion to break out of circular dependencies
+Kept track of which jobs we have already tried to resolve dependencies for during recursion to break out of circular dependencies.
