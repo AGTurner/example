@@ -105,5 +105,23 @@ class SequencerTest < Test::Unit::TestCase
         assert_equal("Jobs can't depend on themselves", exception.message)
       end
     end
+
+    context 'that is passed the job structure
+              a =>
+              b => c
+              c => f
+              d => a
+              e =>
+              f => b' do
+
+      setup do
+        @sequencer = Sequencer.new("a =>\nb => c\nc => f\nd => a\ne =>\nf => b")
+      end
+
+      should 'raise an error that a job can\'t have circular dependencies' do
+        exception = assert_raise(CircularDependenceException) { @sequencer.sequence }
+        assert_equal("Jobs can't have circular dependencies", exception.message)
+      end
+    end
   end
 end

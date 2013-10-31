@@ -12,6 +12,7 @@ class Sequencer
     return '' if @jobs.nil?
     @jobs.each do |job, dep|
       while !sorted(job)
+        @circular_check = {}
         resolve_dependencies(job)
       end
     end
@@ -20,13 +21,18 @@ class Sequencer
 
   def get_dependency(job)
     if @jobs[job] == job
-      raise SelfDependentException, 'Jobs can\'t depend on themselves'
+      raise SelfDependentException, "Jobs can't depend on themselves"
     else
       @jobs[job]
     end
   end
 
   def resolve_dependencies(job)
+    if @circular_check[job]
+      raise CircularDependenceException, "Jobs can't have circular dependencies"
+    end
+    @circular_check[job] = true
+
     if sorted(job)
       return
     elsif dep = get_dependency(job)

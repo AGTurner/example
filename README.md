@@ -18,3 +18,7 @@ Decided it was better for the JobsParser class to not use class methods, and par
 I realised my tests were a bit too rigid when checking orders, so I redid this while adding the test for jobs with nested dependencies
 
 I decided the nested dependencies were best resolved with a recursive method, which would be called against a job until the job itself was sorted.
+
+Added a simple check when getting a job's dependent that it wasn't itself
+
+Kept track of which jobs we have already tried to resolve dependencies for during recursion to break out of circular dependencies
