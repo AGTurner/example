@@ -24,3 +24,9 @@ I decided the nested dependencies were best resolved with a recursive method, wh
 Added a simple check when getting a job's dependent that it wasn't itself.
 
 Kept track of which jobs we have already tried to resolve dependencies for during recursion to break out of circular dependencies.
+
+## Use
+
+Sequence method is called as such:
+
+Sequencer.new(data).sequence
